@@ -1,0 +1,21 @@
+name: push and every hour
+
+on:
+  push:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  push-job:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: push
+        run: echo "Executando quando é realizado um push"
+
+  hourly-job:
+    runs-on: ubuntu-latest
+    needs: push-job
+    steps: 
+      - name: hourly
+        run: echo "Executando de hora em hora"
+
